@@ -1,0 +1,39 @@
+extends ../layouts/main-layout.pug
+block styles
+    link(href="/css/style.css")
+    
+block content
+    h1 Prodcuts
+
+    if(action=='edit')
+        div.alert.alert-success Ürün güncellendi 
+
+    if(action=='delete')
+        div.alert.alert-danger Ürün silindi 
+
+    if products.length>0
+        table.table.table-bordered 
+            thead 
+                tr 
+                    th Image 
+                    th Name 
+                    th Price 
+                    th User 
+                    th 
+            tbody 
+                each product in products 
+                    tr 
+                        td 
+                            img(src=`/img/${product.image}` width='80')
+                        td #{product.name}
+                        td #{product.price} TL 
+                        td #{product.userId.name}
+                        td 
+                            a.btn.btn-primary.btn-sm(href=`/admin/products/${product._id}`) Edit
+
+                            form(action=`/admin/delete-product` method="post")
+                                input(type="hidden" name="_csrf" value=`${csrfToken}`)
+                                input(type='hidden' name="id" value=`${product._id}`)
+                                button(type="submit").btn.btn-primary Delete
+    else 
+        h1 No Products

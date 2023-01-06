@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+html(lang="en")
+    
+    include ../includes/head.pug
+
+    body
+
+        include ../includes/navbar.pug
+
+        .container.pt-100
+            .row
+                .col-12 
+                    if(errorMessage)
+                        div.alert.alert-danger !{errorMessage}
+
+                    if(successMessage)
+                        div.alert.alert-success !{successMessage}
+
+            block content
+
+        include ../includes/script.pug
+
+        
+

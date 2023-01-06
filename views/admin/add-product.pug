@@ -1,0 +1,40 @@
+extends ../layouts/main-layout.pug
+
+block styles
+    link(href="/css/style.css")
+
+block content
+    h1 Add Product
+    hr
+    form(action="/admin/add-product" method="post" enctype="multipart/form-data")
+        input(type="hidden" name="_csrf" value=`${csrfToken}`)
+        div.form-group
+            label(for="name") Name
+            input(type="text" name="name" placeholder="Name" value=`${inputs?inputs.name:''}`).form-control#name
+        
+        div.form-group
+            label(for="price") Price
+            input(type="text" name="price" placeholder="Price" value=`${inputs?inputs.price:''}`).form-control#price
+        
+        div.form-group
+            label(for="image") İmage
+            input(type="file" name="image" placeholder="image").form-control-file#image
+
+        //- div.form-group
+        //-     label(for="category_id") Category
+        //-     select(name="category_id").form-control#category_id
+        //-         option(value='-1') Select Category
+        //-         each category in categories
+        //-             option(value=`${category.id}`) #{category.name}
+
+        div.form-group
+            label(for="description") Description
+            textarea(type="text" name="description" placeholder="description").form-control#editor
+
+        button(type="submit").btn.btn-primary Submit
+
+block script
+    script(type="text/javascript",src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js")
+    script(type="text/javascript",src="/script/script.js")
+    
+

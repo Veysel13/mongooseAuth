@@ -1,0 +1,35 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.fixed-top
+    .container
+        a(href="/").navbar-brand Shopping 
+        ul.navbar-nav.mr-auto 
+            li.nav-item 
+                a(href="/",class=(path=='/'?'active':'')).nav-link Home
+            li.nav-item 
+                a(href="/products").nav-link Products
+
+            if isAuthenticated
+                li.nav-item 
+                    a(href="/cart").nav-link Cart
+                li.nav-item 
+                    a(href="/orders").nav-link Orders
+
+            if isAdmin
+                li.nav-item 
+                    a(href="/admin/add-product").nav-link Add Products
+                li.nav-item 
+                    a(href="/admin/products").nav-link Products
+
+                li.nav-item 
+                    a(href="/admin/add-category").nav-link Add Category
+                li.nav-item 
+                    a(href="/admin/categories").nav-link Categories
+
+        ul.navbar-nav.ml-auto 
+            if isAuthenticated
+                li.nav-item 
+                a(href="/logout").nav-link Logout
+            else
+                li.nav-item 
+                    a(href="/login").nav-link Login
+                li.nav-item 
+                    a(href="register").nav-link Register

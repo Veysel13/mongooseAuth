@@ -1,0 +1,16 @@
+extends ../layouts/main-layout.pug
+
+block styles
+    link(href="/css/style.css")
+
+block content
+    h1 Reset Pasword
+    hr
+    form(action="/reset-password" method="post")
+        input(type="hidden" name="_csrf" value=`${csrfToken}`)
+        div.form-group
+            label(for="email") Email
+            input(type="text" name="email" placeholder="Email").form-control#email
+
+        button(type="submit").btn.btn-primary Submit
+

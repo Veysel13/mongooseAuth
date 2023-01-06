@@ -1,0 +1,23 @@
+extends ../layouts/main-layout.pug
+
+block styles
+    link(href="/css/style.css")
+
+block content
+    h1 Update Category
+    hr
+    form(action="/admin/categories" method="post")
+
+        input(type="hidden" name="_csrf" value=`${csrfToken}`)
+        input(type="hidden" name="id" value=`${category._id}`)
+
+        div.form-group
+            label(for="name") Name
+            input(type="text" name="name" placeholder="Name" value=`${category.name}`).form-control#Name
+            
+        div.form-group
+            label(for="description") Description
+            textarea(type="text" name="description" placeholder="description").form-control#description #{category.description}
+
+        button(type="submit").btn.btn-primary Submit
+
